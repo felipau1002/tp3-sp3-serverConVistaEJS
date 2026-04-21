@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo1</title>
+    <style>
+        body{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #000141;
+            
+            color: #f4f4f4;
+        }
+        h1{
+            color: #f4f4f4;
+            text-align: center;
+            margin: 45px 0px;
+
+        }
+        .contenedorDeHeroes{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            gap: 20px;
+        }
+        .heroes{
+            background-color: black;
+            width: 300px;
+            text-align: center;
+            padding-bottom: 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            overflow: hidden;
+        }
+        .heroes:hover {
+            transform: translateY(-5px);
+        }
+        ul{
+            margin: 0;
+            list-style: none;
+            margin-left: -35px;
+        }
+        h2{
+            margin: 0;
+            background-color: #ff0000;
+            margin: 0;
+            border-bottom: 2px solid #f4f4f4;
+            padding: 8px 0px;
+            margin-bottom: 10px;
+        }
+        p{
+            margin: 0;
+        }
+        h4{
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Superheroes</h1>
+
+    <section class="contenedorDeHeroes">
+        <% superheroes.forEach(heroe => { %>
+            <div class="heroes">                
+                <h2><%= heroe.nombreSuperHeroe %></h2>                
+                <p><%= heroe.nombreReal %></p>
+                <p><%= heroe.edad %></p>
+                <p><%= heroe.planetaOrigen %></p>
+                <p><% if(Array.isArray(heroe.debilidad)) { %>
+                    <h4>Debilidades:</h4>
+                    <ul>
+                        <% heroe.debilidad.forEach(p =>{ %>
+                            <li><%= p %></li>
+                        <% }) %>
+                    </ul>
+                <% } %>
+                <% if(Array.isArray(heroe.poderes)) { %>
+                    <h4>Poderes:</h4>
+                    <ul>
+                        <% heroe.poderes.forEach(p =>{ %>
+                            <li><%= p %></li>
+                        <% }) %>
+                    </ul>
+                <% } %>
+                <% if(Array.isArray(heroe.aliados)) { %>
+                    <h4>Aliados:</h4>
+                    <ul>
+                        <% heroe.aliados.forEach(p =>{ %>
+                            <li><%= p %></li>
+                        <% }) %>
+                    </ul>
+                <% } %>
+                <% if(Array.isArray(heroe.enemigos)) { %>
+                    <h4>Enemigos:</h4>
+                    <ul>
+                        <% heroe.enemigos.forEach(p =>{ %>
+                            <li><%= p %></li>
+                        <% }) %>
+                    </ul>
+                <% } %>
+            </div>
+        <% }) %>
+    </section>
+</body>
+</html>
