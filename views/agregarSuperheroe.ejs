@@ -3,9 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Agregar Superheroe</title>
+    <style>
+        body{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #000141;
+            color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        h1{
+            color: #f4f4f4;
+            text-align: center;
+            margin: 45px 0px;
+        }
+        .heroes{
+            background-color: black;
+            width: 400px;
+            text-align: center;
+            padding-bottom: 25px;
+            border-radius: 25px;
+            overflow: hidden;
+            padding: 30px;
+        }
+        h2{
+            margin: 0;
+            background-color: #ff0000;
+            margin: 0;
+            border-bottom: 2px solid #f4f4f4;
+            padding: 8px 0px;
+            margin-bottom: 10px;
+        }
+        div{
+            margin: 25px 0px;
+            border-bottom: 2px solid red;
+            width: 100%;
+        }
+        input{
+            margin: 15px;
+        }
+    </style>
 </head>
 <body>
+    <h1>Nuevo Superheroe</h1>
+
+    <form action="/api/superheroes/agregar" method="post" class="heroes">
+        <div>
+            <label for="nombreSuperHeroe">Nombre del Superheroe:</label>
+            <br>
+            <input type="text" id="nombreSuperHeroe" name="nombreSuperHeroe" required>
+        </div>
+
+        <div>
+            <label for="nombreReal">Nombre Real:</label>
+            <br>
+            <input type="text" id="nombreReal" name="nombreReal" required>
+        </div>
+
+        <div>
+            <label for="edad">Edad del Superheroe:</label>
+            <br>
+            <input type="number" id="edad" name="edad" required>
+        </div>
+
+        <div>
+            <label for="planetaOrigen">Planeta de Origen:</label>
+            <br>
+            <input type="text" id="planetaOrigen" name="planetaOrigen" required>
+        </div>
+
+        <div>
+            <label for="debilidad">Debilidades:</label>
+            <br>
+            <input type="text" id="debilidad[]" name="debilidad" required placeholder="Debilidad 1">
+            <input type="text" id="debilidad[]" name="debilidad" placeholder="Debilidad 2">
+            <input type="text" id="debilidad[]" name="debilidad" placeholder="Debilidad 3">
+        </div>
+
+        <div>
+            <label for="poderes">Poderes:</label>
+            <br>
+            <input type="text" id="poderes[]" name="poderes" required placeholder="Poder 1">
+            <input type="text" id="poderes[]" name="poderes" placeholder="Poder 2">
+            <input type="text" id="poderes[]" name="poderes" placeholder="Poder 3">
+        </div>
+
+        <div>
+            <label for="aliados">Aliados:</label>
+            <br>
+            <input type="text" id="aliados[]" name="aliados" required placeholder="Aliado 1">
+            <input type="text" id="aliados[]" name="aliados" placeholder="Aliado 2">
+            <input type="text" id="aliados[]" name="aliados" placeholder="Aliado 3">
+        </div>
+
+        <div>
+            <label for="enemigos">Enemigos:</label>
+            <br>
+            <input type="text" id="enemigos[]" name="enemigos" required placeholder="Enemigo 1">
+            <input type="text" id="enemigos[]" name="enemigos" placeholder="Enemigo 2">
+            <input type="text" id="enemigos[]" name="enemigos" placeholder="Enemigo 3">
+        </div>
+
+        <div>
+            <label for="creador">Creador</label>
+            <br>
+            <input type="text" id="creador[]" name="creador" required placeholder="Creador 1">
+            <input type="text" id="creador[]" name="creador" placeholder="Creador 2">
+        </div>
+
+        <button type="submit">Enviar</button>
+    </form>
     
 </body>
 </html>

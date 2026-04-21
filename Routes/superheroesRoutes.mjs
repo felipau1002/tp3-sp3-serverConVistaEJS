@@ -65,6 +65,10 @@ router.get('/superheroes', obtenerTodosLosSuperheroesController);
 
 
 
+router.get('/superheroes/agregar', (req, res) => {
+    res.render('agregarSuperheroe');
+})
+
 router.post(
     '/superheroes/agregar',
     validacionDeNombreSuperheroe,
@@ -72,7 +76,8 @@ router.post(
     validacionDeEdad,
     validacionDePoderes,
     middlewareErrores,
-    crearSuperheroeController
+    crearSuperheroeController,
+    (req,res) => { res.redirect('/superheroes'); }
 );
 
 

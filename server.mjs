@@ -13,6 +13,8 @@ app.use(express.json());
 
 app.set('view engine', 'ejs');
 
+app.use(express.urlencoded({ extended: true }));
+
 connectDB();
 
 app.use('/api', router);
