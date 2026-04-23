@@ -7,15 +7,13 @@
     <style>
         body{
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #000141;
-            
-            color: #f4f4f4;
+            background-color: #001233;
+            color: #0466c8;
         }
         h1{
             color: #f4f4f4;
             text-align: center;
-            margin: 45px 0px;
-
+            margin: 20px 0px;
         }
         .contenedorDeHeroes{
             display: flex;
@@ -24,13 +22,13 @@
             gap: 20px;
         }
         .heroes{
-            background-color: black;
+            background-color: #000814;
             width: 300px;
             text-align: center;
             padding-bottom: 25px;
             border-radius: 25px;
-            cursor: pointer;
             overflow: hidden;
+            
         }
         .heroes:hover {
             transform: translateY(-5px);
@@ -42,11 +40,15 @@
         }
         h2{
             margin: 0;
-            background-color: #ff0000;
-            margin: 0;
-            border-bottom: 2px solid #f4f4f4;
-            padding: 8px 0px;
-            margin-bottom: 10px;
+            background-color: #03045e;
+            border-bottom: 2px solid #0466c8;
+            padding: 15px 0px;
+            margin-bottom: 15px;
+        }
+        a{
+            text-decoration: none;
+            color: #0466c8;
+            margin-top: 10px;
         }
         p{
             margin: 0;
@@ -62,9 +64,12 @@
     <section class="contenedorDeHeroes">
         <% superheroes.forEach(heroe => { %>
             <div class="heroes">                
-                <h2><%= heroe.nombreSuperHeroe %></h2>                
+                <h2><%= heroe.nombreSuperHeroe %></h2>
+                <h4>Nombre Real:</h4>              
                 <p><%= heroe.nombreReal %></p>
+                <h4>Edad:</h4>
                 <p><%= heroe.edad %></p>
+                <h4>Planeta de Origen:</h4>
                 <p><%= heroe.planetaOrigen %></p>
                 <% if(Array.isArray(heroe.debilidad)) { %>
                     <h4>Debilidades:</h4>
@@ -98,6 +103,15 @@
                         <% }) %>
                     </ul>
                 <% } %>
+                <% if(Array.isArray(heroe.creador)) { %>
+                    <h4>Creadores:</h4>
+                    <ul>
+                        <% heroe.creador.forEach(p =>{ %>
+                            <li><%= p %></li>
+                        <% }) %>
+                    </ul>
+                <% } %>
+                <a href="/api/superheroes/editar/<%= heroe._id %>?_method=put">Editar Superheroe</a>
             </div>
         <% }) %>
     </section>

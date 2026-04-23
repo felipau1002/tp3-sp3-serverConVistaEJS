@@ -13,8 +13,8 @@ class SuperHeroRepository extends IRepository {
         return await nuevoHeroe.save();
     }
 
-    static async actualizarSuperheroe(id, edad) {
-        return await superHero.findByIdAndUpdate(id, { edad }, { new: true });
+    static async actualizarSuperheroe(id, datosActualizados) {
+        return await superHero.findByIdAndUpdate(id, datosActualizados, { new: true });
     }
 
     static async eliminarSuperheroePorID(id) {
@@ -23,6 +23,10 @@ class SuperHeroRepository extends IRepository {
 
     static async eliminarSuperheroePorNombre(nombreSuperHeroe) {
         return await superHero.findOneAndDelete({ nombreSuperHeroe });
+    }
+
+    static async obtenerSuperheroePorID(id) {
+        return await superHero.findById(id);
     }
 }
 

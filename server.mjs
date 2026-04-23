@@ -2,6 +2,7 @@ import express from 'express';
 import { connectDB } from './config/dbConfig.mjs';
 import router from './Routes/superheroesRoutes.mjs';
 import dns from 'dns';
+import methodOverride from 'method-override'
 
 dns.setServers(['8.8.8.8', '1.1.1.1']);
 
@@ -13,7 +14,8 @@ app.use(express.json());
 
 app.set('view engine', 'ejs');
 
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true })); // Metodo para enviar formularios HTML
+app.use(methodOverride('_method')); // Metodo para enviar PUT en formularios HTML
 
 connectDB();
 

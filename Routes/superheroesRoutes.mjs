@@ -1,5 +1,5 @@
 import express from 'express';
-import { obtenerTodosLosSuperheroesController, crearSuperheroeController, actualizarSuperheroeController, eliminarSuperheroePorIDController, eliminarSuperheroePorNombreController } from '../controllers/superHeroController.mjs';
+import { obtenerTodosLosSuperheroesController, crearSuperheroeController, actualizarSuperheroeController, eliminarSuperheroePorIDController, eliminarSuperheroePorNombreController, obtenerSuperheroePorIDController } from '../controllers/superHeroController.mjs';
 import { body, validationResult } from 'express-validator';
 
 
@@ -76,15 +76,18 @@ router.post(
     validacionDeEdad,
     validacionDePoderes,
     middlewareErrores,
-    crearSuperheroeController,
-    (req,res) => { res.redirect('/superheroes'); }
+    crearSuperheroeController
 );
 
 
+router.get('/superheroes/editar/:id', obtenerSuperheroePorIDController);
 
 router.put(
-    '/superheroes/:id/edadactualizada',
+    '/superheroes/editar/:id',
+    validacionDeNombreSuperheroe,
+    validacionDeNombreReal,
     validacionDeEdad,
+    validacionDePoderes,
     middlewareErrores,
     actualizarSuperheroeController
 );

@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agregar Superheroe</title>
-    <style>
-        body{
+    <title>Document</title>
+</head>
+<style>
+    body{
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #001233;
             color: #0466c8;
@@ -47,81 +48,87 @@
             padding: 25px 35px;
             border-radius: 25px;
             cursor: pointer;
+            margin-bottom: 35px;
         }
         button:hover{
             background-color: #4ad66d;
         }
-    </style>
-</head>
+        a{
+            text-decoration: none;
+            color: #0466c8;
+        }
+</style>
 <body>
-    <h1>Nuevo Superheroe</h1>
+    <h1>Editar Superheroe</h1>
 
-    <form action="/api/superheroes/agregar" method="post" class="heroes">
+    <form action="/api/superheroes/editar/<%= superheroe._id %>?_method=put" method="post" class="heroes">
         <div>
             <label for="nombreSuperHeroe">Nombre del Superheroe:</label>
             <br>
-            <input type="text" id="nombreSuperHeroe" name="nombreSuperHeroe" required>
+            <input type="text" id="nombreSuperHeroe" name="nombreSuperHeroe" value="<%= superheroe.nombreSuperHeroe %>">
         </div>
 
         <div>
             <label for="nombreReal">Nombre Real:</label>
             <br>
-            <input type="text" id="nombreReal" name="nombreReal" required>
+            <input type="text" id="nombreReal" name="nombreReal" value="<%= superheroe.nombreReal %>">
         </div>
 
         <div>
             <label for="edad">Edad del Superheroe:</label>
             <br>
-            <input type="number" id="edad" name="edad" required>
+            <input type="number" id="edad" name="edad" value="<%= superheroe.edad %>">
         </div>
 
         <div>
             <label for="planetaOrigen">Planeta de Origen:</label>
             <br>
-            <input type="text" id="planetaOrigen" name="planetaOrigen" required>
+            <input type="text" id="planetaOrigen" name="planetaOrigen" value="<%= superheroe.planetaOrigen %>">
         </div>
 
         <div>
             <label for="debilidad">Debilidades:</label>
             <br>
-            <input type="text" id="debilidad[]" name="debilidad" required placeholder="Debilidad 1">
-            <input type="text" id="debilidad[]" name="debilidad" placeholder="Debilidad 2">
-            <input type="text" id="debilidad[]" name="debilidad" placeholder="Debilidad 3">
+            <% superheroe.debilidad.forEach(debilidad => { %>
+                <input type="text" id="debilidad[]" name="debilidad" value="<%= debilidad %>">
+            <% }) %>
         </div>
 
         <div>
             <label for="poderes">Poderes:</label>
             <br>
-            <input type="text" id="poderes[]" name="poderes" required placeholder="Poder 1">
-            <input type="text" id="poderes[]" name="poderes" placeholder="Poder 2">
-            <input type="text" id="poderes[]" name="poderes" placeholder="Poder 3">
+            <% superheroe.poderes.forEach(poder => { %>
+                <input type="text" id="poderes[]" name="poderes" value="<%= poder %>">
+            <% }) %>
         </div>
 
         <div>
             <label for="aliados">Aliados:</label>
             <br>
-            <input type="text" id="aliados[]" name="aliados" required placeholder="Aliado 1">
-            <input type="text" id="aliados[]" name="aliados" placeholder="Aliado 2">
-            <input type="text" id="aliados[]" name="aliados" placeholder="Aliado 3">
+            <% superheroe.aliados.forEach(aliado => { %>
+                <input type="text" id="aliados[]" name="aliados" value="<%= aliado %>">
+            <% }) %>
         </div>
 
         <div>
             <label for="enemigos">Enemigos:</label>
             <br>
-            <input type="text" id="enemigos[]" name="enemigos" required placeholder="Enemigo 1">
-            <input type="text" id="enemigos[]" name="enemigos" placeholder="Enemigo 2">
-            <input type="text" id="enemigos[]" name="enemigos" placeholder="Enemigo 3">
+            <% superheroe.enemigos.forEach(enemigo => { %>
+                <input type="text" id="enemigos[]" name="enemigos" value="<%= enemigo %>">
+            <% }) %>
         </div>
 
         <div>
             <label for="creador">Creador</label>
             <br>
-            <input type="text" id="creador[]" name="creador" required placeholder="Creador 1">
-            <input type="text" id="creador[]" name="creador" placeholder="Creador 2">
+            <% superheroe.creador.forEach(creador => { %>
+                <input type="text" id="creador[]" name="creador" value="<%= creador %>">
+            <% }) %>
         </div>
 
         <button type="submit">Enviar</button>
+        <br>
+        <a href="/api/superheroes">Volver a la lista</a>
     </form>
-    
 </body>
 </html>
