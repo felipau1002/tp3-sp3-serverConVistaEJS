@@ -8,12 +8,26 @@
         body{
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #001233;
-            color: #0466c8;
+            color: #00b4d8;
+        }
+        header{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0 50px;
+        }
+        .agregar{
+            text-decoration: none;
+            color: #f4f4f4;
+        }
+        .agregar:hover{
+            color: #023e8a;
         }
         h1{
             color: #f4f4f4;
             text-align: center;
-            margin: 20px 0px;
+            margin-bottom: 25px;
+            margin-top: 20px;
         }
         .contenedorDeHeroes{
             display: flex;
@@ -22,16 +36,20 @@
             gap: 20px;
         }
         .heroes{
+            display: flex;
+            flex-direction: column;
             background-color: #000814;
             width: 300px;
             text-align: center;
             padding-bottom: 25px;
             border-radius: 25px;
             overflow: hidden;
-            
         }
-        .heroes:hover {
-            transform: translateY(-5px);
+        .heroes1{
+            display: flex;
+            justify-content: space-evenly;
+            margin-top: auto;
+            padding-top: 20px;
         }
         ul{
             margin: 0;
@@ -45,34 +63,59 @@
             padding: 15px 0px;
             margin-bottom: 15px;
         }
-        a{
+        .editar{
+            background-color: #03045e;
             text-decoration: none;
-            color: #0466c8;
-            margin-top: 10px;
+            color: #a5ffd6;
+            border-radius: 15px;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .editar:hover{
+            background-color: #023e8a;
+        }
+        button{
+            background-color: #d90429;
+            border: none;
+            padding: 12px 15px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: medium;
+            color: #f4f4f4;
+            font-weight: 700;
+        }
+        button:hover{
+            background-color: #ef233c;
         }
         p{
             margin: 0;
         }
         h4{
             margin: 0;
+            color: #0466c8;
         }
     </style>
 </head>
 <body>
-    <h1>Superheroes</h1>
+    <header>
+        <h1>Superheroes</h1>
+        <a href="/api/superheroes/agregar" class="agregar">
+            <h3>+ Agregar Superheroe</h3>
+        </a>
+    </header>
 
     <section class="contenedorDeHeroes">
         <% superheroes.forEach(heroe => { %>
             <div class="heroes">                
                 <h2><%= heroe.nombreSuperHeroe %></h2>
-                <h4>Nombre Real:</h4>              
+                <h4><strong>Nombre Real:</strong></h4>              
                 <p><%= heroe.nombreReal %></p>
-                <h4>Edad:</h4>
+                <h4><strong>Edad:</strong></h4>
                 <p><%= heroe.edad %></p>
-                <h4>Planeta de Origen:</h4>
+                <h4><strong>Planeta de Origen:</strong></h4>
                 <p><%= heroe.planetaOrigen %></p>
                 <% if(Array.isArray(heroe.debilidad)) { %>
-                    <h4>Debilidades:</h4>
+                    <h4><strong>Debilidades:</strong></h4>
                     <ul>
                         <% heroe.debilidad.forEach(p =>{ %>
                             <li><%= p %></li>
@@ -80,7 +123,7 @@
                     </ul>
                 <% } %>
                 <% if(Array.isArray(heroe.poderes)) { %>
-                    <h4>Poderes:</h4>
+                    <h4><strong>Poderes:</strong></h4>
                     <ul>
                         <% heroe.poderes.forEach(p =>{ %>
                             <li><%= p %></li>
@@ -88,7 +131,7 @@
                     </ul>
                 <% } %>
                 <% if(Array.isArray(heroe.aliados)) { %>
-                    <h4>Aliados:</h4>
+                    <h4><strong>Aliados:</strong></h4>
                     <ul>
                         <% heroe.aliados.forEach(p =>{ %>
                             <li><%= p %></li>
@@ -96,7 +139,7 @@
                     </ul>
                 <% } %>
                 <% if(Array.isArray(heroe.enemigos)) { %>
-                    <h4>Enemigos:</h4>
+                    <h4><strong>Enemigos:</strong></h4>
                     <ul>
                         <% heroe.enemigos.forEach(p =>{ %>
                             <li><%= p %></li>
@@ -104,14 +147,23 @@
                     </ul>
                 <% } %>
                 <% if(Array.isArray(heroe.creador)) { %>
-                    <h4>Creadores:</h4>
+                    <h4><strong>Creadores:</strong></h4>
                     <ul>
                         <% heroe.creador.forEach(p =>{ %>
                             <li><%= p %></li>
                         <% }) %>
                     </ul>
                 <% } %>
-                <a href="/api/superheroes/editar/<%= heroe._id %>?_method=put">Editar Superheroe</a>
+                <div class="heroes1">
+                    <a href="/api/superheroes/editar/<%= heroe._id %>?_method=put" class="editar">Editar Superheroe</a>
+                    <form action="/api/Superheroes/<%= heroe._id %>?_method=delete" method="post" onsubmit="return confirmarEliminacion()">
+                        <button type="submit">Eliminar</button>
+                    </form>
+
+                    <script>
+                        function confirmarEliminacion() { return confirm('Seguro que desea eliminar el superheroe?'); }
+                    </script>
+                </div>
             </div>
         <% }) %>
     </section>

@@ -21,10 +21,6 @@ class SuperHeroRepository extends IRepository {
         return await superHero.findByIdAndDelete(id);
     }
 
-    static async eliminarSuperheroePorNombre(nombreSuperHeroe) {
-        return await superHero.findOneAndDelete({ nombreSuperHeroe });
-    }
-
     static async obtenerSuperheroePorID(id) {
         return await superHero.findById(id);
     }

@@ -1,4 +1,4 @@
-import { obtenerTodosLosSuperheroes, crearNuevoSuperheroe, actualizarSuperheroe, eliminarSuperheroePorID, eliminarSuperheroePorNombre, obtenerSuperheroePorID } from "../services/superHeroServices.mjs";
+import { obtenerTodosLosSuperheroes, crearNuevoSuperheroe, actualizarSuperheroe, eliminarSuperheroePorID, obtenerSuperheroePorID } from "../services/superHeroServices.mjs";
 
 
 
@@ -49,24 +49,7 @@ export async function eliminarSuperheroePorIDController(req, res) {
             return res.status(404).json({ mensaje: 'Superheroe no encontrado' });
         }
 
-        const superheroeEliminadoFormateado = renderizarSuperheroe(superheroeEliminado);
-        res.status(200).json(superheroeEliminadoFormateado);
-    }   catch(error) {
-        res.status(500).send({mensaje: 'Superheroe no eliminado', error: error.message})
-    }
-}
-
-
-export async function eliminarSuperheroePorNombreController(req, res) {
-    try {
-        const { nombreSuperHeroe } = req.params;
-        const superheroeEliminado2 = await eliminarSuperheroePorNombre(nombreSuperHeroe);
-        if(!superheroeEliminado2) {
-            return res.status(404).json({ mensaje: 'Superheroe no encontrado' });
-        }
-
-        const superheroeEliminadoFormateado2 = renderizarSuperheroe(superheroeEliminado2);
-        res.status(200).json(superheroeEliminadoFormateado2);
+        res.redirect('/api/superheroes');
     }   catch(error) {
         res.status(500).send({mensaje: 'Superheroe no eliminado', error: error.message})
     }

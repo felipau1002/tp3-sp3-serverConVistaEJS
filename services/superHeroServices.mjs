@@ -22,11 +22,6 @@ export async function eliminarSuperheroePorID(id) {
 }
 
 
-export async function eliminarSuperheroePorNombre(nombreSuperHeroe) {
-    return await SuperHeroRepository.eliminarSuperheroePorNombre(nombreSuperHeroe);
-}
-
-
 export async function obtenerSuperheroePorID(id) {
     return await SuperHeroRepository.obtenerSuperheroePorID(id);
 }

@@ -1,5 +1,5 @@
 import express from 'express';
-import { obtenerTodosLosSuperheroesController, crearSuperheroeController, actualizarSuperheroeController, eliminarSuperheroePorIDController, eliminarSuperheroePorNombreController, obtenerSuperheroePorIDController } from '../controllers/superHeroController.mjs';
+import { obtenerTodosLosSuperheroesController, crearSuperheroeController, actualizarSuperheroeController, eliminarSuperheroePorIDController, obtenerSuperheroePorIDController } from '../controllers/superHeroController.mjs';
 import { body, validationResult } from 'express-validator';
 
 
@@ -40,8 +40,8 @@ const validacionDePoderes = [   // VALIDACION DE PODERES
         .isArray({ min: 1 }).withMessage('Debe haber al menos un poder'),
 
     body('poderes.*')
+        .optional({ checkFalsy: true })
         .trim()
-        .notEmpty().withMessage('Los poderes no pueden estar vacios')
         .isLength({ min: 3 }).withMessage('Cada poder debe tener al menos 3 caracteres')
         .isLength({ max: 60 }).withMessage('Cada poder debe tener menos de 60 caracteres')
 ];
@@ -95,7 +95,6 @@ router.put(
 
 
 router.delete('/superheroes/:id', eliminarSuperheroePorIDController);
-router.delete('/superheroes/nombre/:nombre', eliminarSuperheroePorNombreController);
 
 
 export default router;
